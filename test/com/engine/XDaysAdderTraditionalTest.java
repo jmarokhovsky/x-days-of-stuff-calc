@@ -33,5 +33,12 @@ public class XDaysAdderTraditionalTest {
 	public void test2Days() {
 		assertEquals(3, adder.getTotalItems(2));
 	}
+	
+	@Test
+	public void test12DaysOfXMas() {
+		// The sum of accumulating the correct amount of each item
+		int sum = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12;
+		assertEquals(sum, adder.getTotalItems(12));
+	}
 
 }

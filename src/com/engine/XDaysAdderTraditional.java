@@ -16,7 +16,10 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 	public int getTotalItems(int days) {
 		int result = days;
 		if (days > 1) {
-			result = 3;
+			result = 0;
+			for (int i = 1; i <= days; i++) {
+				result += i;
+			}
 		}
 		return result;
 	}
