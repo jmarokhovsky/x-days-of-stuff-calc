@@ -14,8 +14,17 @@ public class XDaysAdderAlternate implements IXDaysAdder {
 	 */
 	@Override
 	public int getTotalItems(int days) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		if (days <= 1) {
+			result = days;
+		} else {
+			for (int i = 1; i <= days; i++) {
+				for (int j = i; j > 0; j--) {
+					result += j;
+				}
+			}
+		}
+		return result;
 	}
 
 }
