@@ -50,7 +50,7 @@ public class XDaysAdderTraditionalTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		PrintStream outPrint = new PrintStream(out);
 		adder.printItems(outPrint);
-		String expectedOut = "Day: 1\nItems: 1 partridge in a pear tree";
+		String expectedOut = "Day: 1\nItems: 1 partridge in a pear tree\n";
 		assertEquals(expectedOut, out.toString());
 	}
 
