@@ -70,6 +70,30 @@ public class XDaysAdderTraditionalTest {
 		assertEquals(expectedOut, out.toString());
 	}
 	
+	@Test
+	public void testPrint12Days() {
+		getTotalItemsAndPrint(12);
+		String expectedOut = "Day: 1\tItems: 1 partridge in a pear tree\n" +
+                			 "Day: 2\tItems: 2 turtle doves\n" +
+                			 "Day: 3\tItems: 3 french hens\n" +
+                			 "Day: 4\tItems: 4 calling birds\n" +
+                			 "Day: 5\tItems: 5 gold rings\n" +
+                			 "Day: 6\tItems: 6 geese a-laying\n" +
+                			 "Day: 7\tItems: 7 swans a-swimming\n" +
+                			 "Day: 8\tItems: 8 maids a-milking\n" +
+                			 "Day: 9\tItems: 9 ladies dancing\n" +
+                			 "Day: 10\tItems: 10 lords a-leaping\n" +
+                			 "Day: 11\tItems: 11 pipers piping\n" +
+                			 "Day: 12\tItems: 12 drummers drumming\n";
+		assertEquals(expectedOut, out.toString());
+	}
+	
+	@Test
+	public void testPrint13Days() {
+		getTotalItemsAndPrint(13);
+		String expectedOut = "The amount of days given are outside of the scope of the current printer.";
+		assertEquals(expectedOut, out.toString());
+	}
 	
 	/***** private methods to make testing easier ******/
 	private void getTotalItemsAndPrint(int days) {

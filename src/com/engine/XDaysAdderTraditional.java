@@ -11,6 +11,20 @@ import java.io.PrintStream;
  */
 public class XDaysAdderTraditional implements IXDaysAdder {
 	private int days = 0;
+	private static final String[] itemText =
+	{"partridge in a pear tree",
+	 "turtle doves",
+	 "french hens",
+	 "calling birds",
+	 "gold rings",
+	 "geese a-laying",
+	 "swans a-swimming",
+	 "maids a-milking",
+	 "ladies dancing",
+	 "lords a-leaping",
+	 "pipers piping",
+	 "drummers drumming"
+	};
 
 	/* (non-Javadoc)
 	 * @see com.engine.IXDaysAdder#getTotalItems(int)
@@ -30,13 +44,21 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 
 	@Override
 	public void printItems(PrintStream ps) {
-		String outputList = "Day: 1\tItems: 1 partridge in a pear tree\n";
-		String secondDay = "Day: 2\tItems: 2 turtle doves\n";
-		if (days == 0) {
-			outputList = "No days were supplied.";
-		}
-		if (days > 1) {
-			outputList = outputList.concat(secondDay);
+		String outputList = "No days were supplied.";
+		String currentDay = null;
+		if (days > 0 && days <= 12) {
+			outputList = ""; // clear the output list
+			for (int i = 0; i < days; i++) {
+				int currDay = i + 1;
+				currentDay = "Day: " + currDay +
+						     "\tItems: " + currDay + " " +
+							 itemText[i] + "\n";
+				outputList = outputList.concat(currentDay);
+			}
+		} 
+		if (days > 12) {
+			outputList = "The amount of days given are outside of the scope of "
+					+ "the current printer.";
 		}
 		ps.print(outputList);
 	}
