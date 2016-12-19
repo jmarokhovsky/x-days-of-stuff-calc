@@ -3,11 +3,14 @@
  */
 package com.engine;
 
+import java.io.PrintStream;
+
 /**
  * @author jmaro
  *
  */
 public class XDaysAdderTraditional implements IXDaysAdder {
+//	private int days = 0;
 
 	/* (non-Javadoc)
 	 * @see com.engine.IXDaysAdder#getTotalItems(int)
@@ -22,6 +25,12 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public void printItems(PrintStream ps) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
