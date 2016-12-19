@@ -2,15 +2,22 @@ package com.engine;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class XDaysAdderAlternateTest {
 	private XDaysAdderAlternate adder;
+	private PrintStream outPrint;
+	private ByteArrayOutputStream out;
 	
 	@Before
 	public void setUp() {
 		adder = new XDaysAdderAlternate();
+		out = new ByteArrayOutputStream();
+		outPrint = new PrintStream(out);
 	}
 
 	@Test
@@ -51,6 +58,34 @@ public class XDaysAdderAlternateTest {
 		sum += tAdder.getTotalItems(12);
 		
 		assertEquals(sum, adder.getTotalItems(12));
+	}
+	
+	@Test
+	public void testPrint1Day() {
+		getTotalItemsAndPrint(1);
+		String expectedOut = "Day: 1\tItems: 1 partridge in a pear tree\n";
+		assertEquals(expectedOut, out.toString());
+	}
+	
+	@Test
+	public void testPrint0Day() {
+		getTotalItemsAndPrint(0);
+		String expectedOut = "No days were supplied.";
+		assertEquals(expectedOut, out.toString());
+	}
+	
+	@Test
+	public void testPrintSecondDay() {
+		getTotalItemsAndPrint(2);
+		String expectedOut = "Day: 1\tItems: 1 partridge in a pear tree\n" +
+							 "Day: 2\tItems: 2 turtle doves and 1 partridge in a pear tree\n";
+		assertEquals(expectedOut, out.toString());
+	}
+	
+	/***** private methods to make testing easier ******/
+	private void getTotalItemsAndPrint(int days) {
+		adder.getTotalItems(days);
+		adder.printItems(outPrint);
 	}
 
 }

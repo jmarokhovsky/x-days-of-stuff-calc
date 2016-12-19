@@ -11,7 +11,7 @@ import java.io.PrintStream;
  */
 public class XDaysAdderTraditional implements IXDaysAdder {
 	private int days = 0;
-	private static final String[] itemText =
+	private static final String[] ITEM_TEXT =
 	{"partridge in a pear tree",
 	 "turtle doves",
 	 "french hens",
@@ -52,7 +52,7 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 				int currDay = i + 1;
 				currentDay = "Day: " + currDay +
 						     "\tItems: " + currDay + " " +
-							 itemText[i] + "\n";
+							 ITEM_TEXT[i] + "\n";
 				outputList = outputList.concat(currentDay);
 			}
 		} 
