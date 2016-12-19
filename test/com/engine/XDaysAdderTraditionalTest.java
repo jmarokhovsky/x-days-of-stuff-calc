@@ -51,7 +51,7 @@ public class XDaysAdderTraditionalTest {
 	@Test
 	public void testPrint1Day() {
 		getTotalItemsAndPrint(1);
-		String expectedOut = "Day: 1\nItems: 1 partridge in a pear tree\n";
+		String expectedOut = "Day: 1\tItems: 1 partridge in a pear tree\n";
 		assertEquals(expectedOut, out.toString());
 	}
 	
@@ -65,8 +65,8 @@ public class XDaysAdderTraditionalTest {
 	@Test
 	public void testPrintSecondDay() {
 		getTotalItemsAndPrint(2);
-		String expectedOut = "Day: 1\nItems: 1 partridge in a pear tree\n" +
-		                     "Day: 2\nItems: 2 turtle doves\n";
+		String expectedOut = "Day: 1\tItems: 1 partridge in a pear tree\n" +
+		                     "Day: 2\tItems: 2 turtle doves\n";
 		assertEquals(expectedOut, out.toString());
 	}
 	
