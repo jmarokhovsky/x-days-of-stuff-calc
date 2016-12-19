@@ -11,10 +11,14 @@ import org.junit.Test;
 
 public class XDaysAdderTraditionalTest {
 	private XDaysAdderTraditional adder;
+	private PrintStream outPrint;
+	private ByteArrayOutputStream out;
 	
 	@Before
 	public void setUp() {
 		adder = new XDaysAdderTraditional();
+		out = new ByteArrayOutputStream();
+		outPrint = new PrintStream(out);
 	}
 	
 	@Test
@@ -46,12 +50,31 @@ public class XDaysAdderTraditionalTest {
 	
 	@Test
 	public void testPrint1Day() {
-		adder.getTotalItems(1);
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		PrintStream outPrint = new PrintStream(out);
-		adder.printItems(outPrint);
+		getTotalItemsAndPrint(1);
 		String expectedOut = "Day: 1\nItems: 1 partridge in a pear tree\n";
 		assertEquals(expectedOut, out.toString());
+	}
+	
+	@Test
+	public void testPrint0Day() {
+		getTotalItemsAndPrint(0);
+		String expectedOut = "No days were supplied.";
+		assertEquals(expectedOut, out.toString());
+	}
+	
+	@Test
+	public void testPrintSecondDay() {
+		getTotalItemsAndPrint(2);
+		String expectedOut = "Day: 1\nItems: 1 partridge in a pear tree\n" +
+		                     "Day: 2\nItems: 2 turtle doves\n";
+		assertEquals(expectedOut, out.toString());
+	}
+	
+	
+	/***** private methods to make testing easier ******/
+	private void getTotalItemsAndPrint(int days) {
+		adder.getTotalItems(days);
+		adder.printItems(outPrint);
 	}
 
 }
