@@ -5,10 +5,7 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.Before;
-import org.junit.Ignore;
-//import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 public class XDaysAdderTraditionalTest {
 	private XDaysAdderTraditional adder;
@@ -107,17 +104,17 @@ public class XDaysAdderTraditionalTest {
 		assertEquals(expectedOut, outDays[days - 1].substring(0, expectedOut.length()));
 	}
 	
-	@Test
-	public void testGetRandomNoun() {
-		assertNotNull(adder.getRandomNoun());
-	}
-	
-	@Test
-	public void testGetRandomNounDifferentResultsSecondCall() {
-		String r1 = adder.getRandomNoun();
-		String r2 = adder.getRandomNoun();
-		assertNotEquals(r1, r2);
-	}
+//	@Ignore
+//	public void testGetRandomNoun() {
+//		assertNotNull(adder.getRandomNoun());
+//	}
+//	
+//	@Ignore
+//	public void testGetRandomNounDifferentResultsSecondCall() {
+//		String r1 = adder.getRandomNoun();
+//		String r2 = adder.getRandomNoun();
+//		assertNotEquals(r1, r2);
+//	}
 	
 	@Test
 	public void testPrint31Days() {

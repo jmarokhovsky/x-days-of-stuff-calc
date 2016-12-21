@@ -3,10 +3,7 @@
  */
 package com.engine;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +11,6 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 /**
  * @author jmaro
@@ -96,35 +92,30 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 			remaining -= 10;
 		}
 		url = random_noun_url_multi + remaining;
-		try {
-			String[] nouns = randomNounGet(url);
-			for (int i = 0; i < remaining; i++) {
-				String newItem = nouns[i].toLowerCase() + "s";
-				result.add(newItem);
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR: Could not reach the random noun website: " + random_noun_url);
-			System.out.println("Error message: " + e.getMessage());
+		String[] nouns = randomNounGet(url);
+		for (int i = 0; i < remaining; i++) {
+			String newItem = nouns[i].toLowerCase() + "s";
+			result.add(newItem);
 		}
 		return result;
 	}
 	
-	protected String getRandomNoun() {
-		String result = "Panther";
-		try {
-			Document doc = Jsoup.connect(random_noun_url).get();
-			Element content = doc.getElementById("ContentContainer");
-			Elements greenBoxes = content.getElementsByClass("greenBox");
-			Element li = greenBoxes.get(0).getElementsByTag("ol").
-					get(0).getElementsByTag("li").get(0);
-			result = li.text();
-		} catch (Exception e) {
-			System.out.println("ERROR: Could not reach the random noun website: " + random_noun_url);
-			System.out.println("Error message: " + e.getMessage());
-		}
-		System.out.println("Result: " + result);
-		return result;
-	}
+//	protected String getRandomNoun() {
+//		String result = "Panther";
+//		try {
+//			Document doc = Jsoup.connect(random_noun_url).get();
+//			Element content = doc.getElementById("ContentContainer");
+//			Elements greenBoxes = content.getElementsByClass("greenBox");
+//			Element li = greenBoxes.get(0).getElementsByTag("ol").
+//					get(0).getElementsByTag("li").get(0);
+//			result = li.text();
+//		} catch (Exception e) {
+//			System.out.println("ERROR: Could not reach the random noun website: " + random_noun_url);
+//			System.out.println("Error message: " + e.getMessage());
+//		}
+//		System.out.println("Result: " + result);
+//		return result;
+//	}
 	
 	private String[] randomNounGet(String url) {
 		String[] result = null;
