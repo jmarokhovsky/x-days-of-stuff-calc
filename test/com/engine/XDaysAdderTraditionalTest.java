@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.Before;
+import org.junit.Ignore;
 //import org.junit.Ignore;
 import org.junit.Test;
 
@@ -89,10 +90,42 @@ public class XDaysAdderTraditionalTest {
 	}
 	
 	@Test
+	public void testPrint12Checking() {
+		// This is to test out ways to test 13+ days.
+		getTotalItemsAndPrint(12);
+		String expectedOut = "Day: 12\tItems: 12";
+		String[] outDays = out.toString().split("\n");
+		assertEquals(expectedOut, outDays[11].substring(0, expectedOut.length()));
+	}
+	
+	@Test
 	public void testPrint13Days() {
-		getTotalItemsAndPrint(13);
-		String expectedOut = "The amount of days given are outside of the scope of the current printer.";
-		assertEquals(expectedOut, out.toString());
+		int days = 13;
+		getTotalItemsAndPrint(days);
+		String expectedOut = "Day: 13\tItems: 13";
+		String[] outDays = out.toString().split("\n");
+		assertEquals(expectedOut, outDays[days - 1].substring(0, expectedOut.length()));
+	}
+	
+	@Test
+	public void testGetRandomNoun() {
+		assertNotNull(adder.getRandomNoun());
+	}
+	
+	@Test
+	public void testGetRandomNounDifferentResultsSecondCall() {
+		String r1 = adder.getRandomNoun();
+		String r2 = adder.getRandomNoun();
+		assertNotEquals(r1, r2);
+	}
+	
+	@Test
+	public void testPrint31Days() {
+		int days = 31;
+		getTotalItemsAndPrint(days);
+		String expectedOut = "Day: 31\tItems: 31";
+		String[] outDays = out.toString().split("\n");
+		assertEquals(expectedOut, outDays[days - 1].substring(0, expectedOut.length()));
 	}
 	
 	/***** private methods to make testing easier ******/
