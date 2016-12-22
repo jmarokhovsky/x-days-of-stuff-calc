@@ -104,18 +104,6 @@ public class XDaysAdderTraditionalTest {
 		assertEquals(expectedOut, outDays[days - 1].substring(0, expectedOut.length()));
 	}
 	
-//	@Ignore
-//	public void testGetRandomNoun() {
-//		assertNotNull(adder.getRandomNoun());
-//	}
-//	
-//	@Ignore
-//	public void testGetRandomNounDifferentResultsSecondCall() {
-//		String r1 = adder.getRandomNoun();
-//		String r2 = adder.getRandomNoun();
-//		assertNotEquals(r1, r2);
-//	}
-	
 	@Test
 	public void testPrint31Days() {
 		int days = 31;

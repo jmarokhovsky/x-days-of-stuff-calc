@@ -6,11 +6,13 @@ package com.engine;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+//import java.util.List;
+//
+//import org.jsoup.Jsoup;
+//import org.jsoup.nodes.Document;
+//import org.jsoup.nodes.Element;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import com.getRand.XRandomNounGetter;
 
 /**
  * @author jmaro
@@ -18,8 +20,8 @@ import org.jsoup.nodes.Element;
  */
 public class XDaysAdderTraditional implements IXDaysAdder {
 	private int days = 0;
-	private final String random_noun_url = "http://www.desiquintans.com/noungenerator?count=1";
-	private final String random_noun_url_multi = "http://www.desiquintans.com/noungenerator?count=";
+//	private final String random_noun_url = "http://www.desiquintans.com/noungenerator?count=1";
+//	private final String random_noun_url_multi = "http://www.desiquintans.com/noungenerator?count=";
 	private final String[] orig12Items = 
 	{"partridge in a pear tree",
 	 "turtle doves",
@@ -34,8 +36,11 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 	 "pipers piping",
 	 "drummers drumming"
 	};
-	private ArrayList<String> itemText =
-			new ArrayList<String>(Arrays.asList(orig12Items));
+	private ArrayList<String> itemText = new ArrayList<String>(Arrays.asList(orig12Items)); 
+	
+//	public XDaysAdderTraditional() {
+//		itemText = new ArrayList<String>(Arrays.asList(orig12Items));
+//	}
 	
 
 	/* (non-Javadoc)
@@ -74,61 +79,61 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 		ps.print(outputList);
 	}
 	
-	public void addToItemList(int amountToAdd) {
-		itemText.addAll(getRandomNouns(amountToAdd));
+	private void addToItemList(int amountToAdd) {
+		itemText.addAll(XRandomNounGetter.getRandomNouns(amountToAdd));
 	}
 	
-	private List<String> getRandomNouns(int nounCount) {
-		List<String> result = new ArrayList<String>();
-		int remaining = nounCount;
-		String url;
-		while (remaining / 10 > 0) {
-			url = random_noun_url_multi + "10";
-			String[] nouns = randomNounGet(url);
-			for (int i = 0; i < 10; i++) {
-				String newItem = nouns[i].toLowerCase() + "s";
-				result.add(newItem);
-			}
-			remaining -= 10;
-		}
-		url = random_noun_url_multi + remaining;
-		String[] nouns = randomNounGet(url);
-		for (int i = 0; i < remaining; i++) {
-			String newItem = nouns[i].toLowerCase() + "s";
-			result.add(newItem);
-		}
-		return result;
-	}
-	
-//	protected String getRandomNoun() {
-//		String result = "Panther";
+//	private List<String> getRandomNouns(int nounCount) {
+//		List<String> result = new ArrayList<String>();
+//		int remaining = nounCount;
+//		String url;
+//		while (remaining / 10 > 0) {
+//			url = random_noun_url_multi + "10";
+//			String[] nouns = randomNounGet(url);
+//			for (int i = 0; i < 10; i++) {
+//				String newItem = nouns[i].toLowerCase() + "s";
+//				result.add(newItem);
+//			}
+//			remaining -= 10;
+//		}
+//		url = random_noun_url_multi + remaining;
+//		String[] nouns = randomNounGet(url);
+//		for (int i = 0; i < remaining; i++) {
+//			String newItem = nouns[i].toLowerCase() + "s";
+//			result.add(newItem);
+//		}
+//		return result;
+//	}
+//	
+////	protected String getRandomNoun() {
+////		String result = "Panther";
+////		try {
+////			Document doc = Jsoup.connect(random_noun_url).get();
+////			Element content = doc.getElementById("ContentContainer");
+////			Elements greenBoxes = content.getElementsByClass("greenBox");
+////			Element li = greenBoxes.get(0).getElementsByTag("ol").
+////					get(0).getElementsByTag("li").get(0);
+////			result = li.text();
+////		} catch (Exception e) {
+////			System.out.println("ERROR: Could not reach the random noun website: " + random_noun_url);
+////			System.out.println("Error message: " + e.getMessage());
+////		}
+////		System.out.println("Result: " + result);
+////		return result;
+////	}
+//	
+//	private String[] randomNounGet(String url) {
+//		String[] result = null;
 //		try {
-//			Document doc = Jsoup.connect(random_noun_url).get();
-//			Element content = doc.getElementById("ContentContainer");
-//			Elements greenBoxes = content.getElementsByClass("greenBox");
-//			Element li = greenBoxes.get(0).getElementsByTag("ol").
-//					get(0).getElementsByTag("li").get(0);
-//			result = li.text();
+//			Document doc = Jsoup.connect(url).get();
+//			Element ol = doc.getElementById("ContentContainer").getElementsByClass("greenBox").
+//					get(0).getElementsByTag("ol").get(0);
+//			result = ol.text().trim().split(" ");
 //		} catch (Exception e) {
 //			System.out.println("ERROR: Could not reach the random noun website: " + random_noun_url);
 //			System.out.println("Error message: " + e.getMessage());
 //		}
-//		System.out.println("Result: " + result);
 //		return result;
 //	}
-	
-	private String[] randomNounGet(String url) {
-		String[] result = null;
-		try {
-			Document doc = Jsoup.connect(url).get();
-			Element ol = doc.getElementById("ContentContainer").getElementsByClass("greenBox").
-					get(0).getElementsByTag("ol").get(0);
-			result = ol.text().trim().split(" ");
-		} catch (Exception e) {
-			System.out.println("ERROR: Could not reach the random noun website: " + random_noun_url);
-			System.out.println("Error message: " + e.getMessage());
-		}
-		return result;
-	}
 
 }

@@ -4,6 +4,10 @@
 package com.engine;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.getRand.XRandomNounGetter;
 
 /**
  * @author jmaro
@@ -26,6 +30,7 @@ public class XDaysAdderAlternate implements IXDaysAdder {
 			"pipers piping",
 			"drummers drumming"
 	};
+	private ArrayList<String> itemText = new ArrayList<String>(Arrays.asList(item_strs)); 
 
 	/* (non-Javadoc)
 	 * @see com.engine.IXDaysAdder#getTotalItems(int)
@@ -53,13 +58,17 @@ public class XDaysAdderAlternate implements IXDaysAdder {
 		String dISepStr = "\t";
 		String itemStr = "Items: ";
 		String endStr = "\n";
-		if (days > 0 && days <= 12) {
+		if (days > 0) {
+			if (days > 12) {
+				addToItemList(days - 12); // add enough items after the 12 given
+			}
 			outputList = "";
 			for (int i = 0; i < days; i++) {
 				int currDay = i + 1;
 				String currItems = "";
 				for (int j = currDay; j > 0; j--) {
-					currItems += j + " " + item_strs[j - 1];
+//					currItems += j + " " + item_strs[j - 1];
+					currItems += j + " " + itemText.get(j - 1);
 					if (j > 1) {
 						currItems += ", ";
 					}
@@ -67,10 +76,14 @@ public class XDaysAdderAlternate implements IXDaysAdder {
 				String currStr = dayStr + currDay + dISepStr + itemStr + currItems + endStr;
 				outputList += currStr;
 			}
-		} else if (days > 12) {
-			outputList = "The amount of days given are outside of the scope of the current printer.";
+//		} else if (days > 12) {
+//			outputList = "The amount of days given are outside of the scope of the current printer.";
 		}
 		ps.print(outputList);
+	}
+	
+	private void addToItemList(int amountToAdd) {
+		itemText.addAll(XRandomNounGetter.getRandomNouns(amountToAdd));
 	}
 
 }
