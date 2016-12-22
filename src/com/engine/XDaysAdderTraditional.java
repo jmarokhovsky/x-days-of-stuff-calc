@@ -79,7 +79,7 @@ public class XDaysAdderTraditional implements IXDaysAdder {
 		ps.print(outputList);
 	}
 	
-	public void addToItemList(int amountToAdd) {
+	private void addToItemList(int amountToAdd) {
 		itemText.addAll(XRandomNounGetter.getRandomNouns(amountToAdd));
 	}
 	
