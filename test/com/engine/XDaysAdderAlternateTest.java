@@ -125,11 +125,30 @@ public class XDaysAdderAlternateTest {
 		assertEquals(expectedOut, out.toString());
 	}
 	
+//	@Test
+//	public void testPrint13Days() {
+//		getTotalItemsAndPrint(13);
+//		String expectedOut = "The amount of days given are outside of the scope of the current printer.";
+//		assertEquals(expectedOut, out.toString());
+//	}
+	
+	
 	@Test
 	public void testPrint13Days() {
-		getTotalItemsAndPrint(13);
-		String expectedOut = "The amount of days given are outside of the scope of the current printer.";
-		assertEquals(expectedOut, out.toString());
+		int days = 13;
+		getTotalItemsAndPrint(days);
+		String expectedOut = "Day: 13\tItems: 13";
+		String[] outDays = out.toString().split("\n");
+		assertEquals(expectedOut, outDays[days - 1].substring(0, expectedOut.length()));
+	}
+	
+	@Test
+	public void testPrint31Days() {
+		int days = 31;
+		getTotalItemsAndPrint(days);
+		String expectedOut = "Day: 31\tItems: 31";
+		String[] outDays = out.toString().split("\n");
+		assertEquals(expectedOut, outDays[days - 1].substring(0, expectedOut.length()));
 	}
 	
 	/***** private methods to make testing easier ******/
