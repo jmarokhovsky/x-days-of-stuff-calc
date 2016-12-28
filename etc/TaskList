@@ -1,0 +1,3 @@
+Create a backup Random Noun Getter using the text file in case the site goes down.
+	link: http://www.desiquintans.com/nounlist
+Update Main to allow access to the alternate interpretation (maybe using the args)
